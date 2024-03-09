@@ -1,20 +1,18 @@
 HOME = .
 INCLUDE = $(HOME)/include
-SRC = $(HOME)/source
+SRC = $(HOME)/src
 BIN = $(HOME)/bin
-OBJ = $(OBJ)/obj
-CFLAGS = -std=c++11 -I$(include)
+OBJ = $(HOME)/obj
+CFLAGS = -std=c++11 -I$(INCLUDE)
 
-all: $(BIN)/main.bin
+all: main.bin \
+	 clean
 
-$(BIN)/main.bin: $(OBJ)/quicksort.o, $(SOURCE)/main.cpp
+main.bin: quicksort.o
 	g++ $(CFLAGS) -o $(BIN)/main.bin $(SRC)/main.cpp $(OBJ)/quicksort.o
 
-$(OBJ)/quicksort.o: $(INCLUDE)/quicksort.hpp, $(SRC)/quicksort.cpp
-	g++ $(CFLAGS) -c $(SRC)/quicksort.cpp
-
-$(BIN)/quicksort.bin: $(INCLUDE)/quicksort.hpp, $(SRC)/quicksort.cpp
-	g++ $(CFLAGS) -o $(BIN)/quicksort.bin $(SRC)/quicksort.cpp
+quicksort.o:
+	g++ $(CFLAGS) -c -o $(OBJ)/quicksort.o $(SRC)/quicksort.cpp
 
 clean:
-	rm quicksort.bin
+	rm $(OBJ)/quicksort.o 

@@ -43,10 +43,10 @@ int main(int argc, char *argv[]) {
 		for (i= 0; i<n; i++)
 			v[i]= rand()%n;
 		
-		cerr << "Ejecutando Burbuja para tam. caso: " << n << endl;
+		cerr << "Ejecutando Quicksort para tam. caso: " << n << endl;
 		
 		t0= std::chrono::high_resolution_clock::now(); // Cogemos el tiempo en que comienza la ejecuciÛn del algoritmo
-		quicksort(v, n); // Ejecutamos el algoritmo para tamaÒo de caso tam
+		quicksort(v, 0, n-1); // Ejecutamos el algoritmo para tamaÒo de caso tam
 		tf= std::chrono::high_resolution_clock::now(); // Cogemos el tiempo en que finaliza la ejecuciÛn del algoritmo
 		
 		unsigned long tejecucion= std::chrono::duration_cast<std::chrono::microseconds>(tf - t0).count();

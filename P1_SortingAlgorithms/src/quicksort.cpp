@@ -1,10 +1,15 @@
 /*
 Marco Girela Vida 2ºB3
 
-QuickSort algorithm implementation in C++
+Implementación de quicksort en C++
+
+Inspirada en la implementación de este video de geeksforgeeks donde se explica bastante
+bien su funcionamiento: https://www.geeksforgeeks.org/videos/quick-sort-sde-sheet/
 */
+
 #include "quicksort.hpp"
 
+// Función para intercambiar 
 void swap(int * pos1, int * pos2)
 {
     int tmp = *pos1;
@@ -12,25 +17,36 @@ void swap(int * pos1, int * pos2)
     *pos2 = tmp;
 }
 
+// Función que organiza los elementos a la izquierda (si son menores)
+// o derecha (si son mayores) del pivote
+// Será la función que se repita por cada iteración recursiva.
+// arr: Vector donde se aplica la función.
+// low: Punto de inicio de la partición que se quiere particionar.
+// high: Punto de fin de dicha partición.
+// En esta implementación se elige como pivote el último elemento.
 int partition(int arr[], int low, int high)
 {
     int pivot = arr[high];
-    int i = (low - 1);
+    int insertion_point = (low - 1);
 
-    for (int j = low; j < high; j++)
+    for (int i = low; i < high; i++)
     {
-        if (arr[j] <= pivot)
+        if (arr[i] <= pivot)
         {
-            i++;
-            swap(&arr[i], &arr[j]);
+            insertion_point++;
+            swap(&arr[insertion_point], &arr[i]);
         }
     }
 
-    swap(&arr[i + 1], &arr[high]);
+    swap(&arr[insertion_point + 1], &arr[high]);
 
-    return (i + 1);
+    return (insertion_point + 1);
 }
 
+// Función principal recursiva.
+// Hasta que no se llegue al caso base (el vector está ordenado)
+// se particiona el vector en la sección dada y se aplica de nuevo
+// la función en las subsecciones restantes
 void quicksort(int arr[], int low, int high)
 {
     if (low < high)
