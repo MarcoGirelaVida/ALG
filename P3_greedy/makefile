@@ -1,18 +1,23 @@
 HOME = .
-INCLUDE = $(HOME)/include
-SRC = $(HOME)/src
-BIN = $(HOME)/bin
-OBJ = $(HOME)/obj
-CFLAGS = -std=c++11 -I$(INCLUDE)
+INCLUDE = $(HOME)
+SRC = $(HOME)
+BIN = $(HOME)
+OBJ = $(HOME)
+CFLAGS = 
 
-all: main.bin \
-	 clean
+all: red_conexiones algoritmoMesaRedonda rutaAutobus algoritmoParejas algoritmoAsfaltarCalles
 
-main.bin: red_conexiones.o
-	g++ $(CFLAGS) -o $(BIN)/main.bin $(SRC)/main.cpp $(OBJ)/red_conexiones.o
+red_conexiones:
+	g++ $(CFLAGS) -o $(BIN)/red_conexiones $(SRC)/red_conexiones.cpp
 
-red_conexiones.o:
-	g++ $(CFLAGS) -c -o $(OBJ)/red_conexiones.o $(SRC)/red_conexiones.cpp
+algoritmoMesaRedonda:
+	g++ $(CFLAGS) -o $(BIN)/algoritmoMesaRedonda $(SRC)/algoritmoMesaRedonda.cpp
 
-clean:
-	rm $(OBJ)/red_conexiones.o 
+rutaAutobus:
+	g++ $(CFLAGS) -o $(BIN)/rutasAutobus $(SRC)/rutasAutobus.cpp
+
+algoritmoParejas:
+	g++ $(CFLAGS) -o $(BIN)/algoritmoParejas $(SRC)/algoritmoParejas.cpp
+
+algoritmoAsfaltarCalles:
+	g++ $(CFLAGS) -o $(BIN)/algoritmoAsfaltarCalles $(SRC)/algoritmoAsfaltarCalles.cpp
