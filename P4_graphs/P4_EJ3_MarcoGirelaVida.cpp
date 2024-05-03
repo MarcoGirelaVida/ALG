@@ -20,6 +20,7 @@ bool paso_valido(const paso &p, const tablero &t);
 tablero ejecutar_paso(const paso &p, const tablero &t);
 queue<posicion> localizar_casillas_movibles (const tablero &t);
 void algoritmo_backtraking(queue<paso> &solucion, tablero &t);
+bool solucion_encontrada(const tablero &t, const queue<paso> &solucion);
 
 void mostrar_casillas_movibles(const queue<posicion> &casillas_movibles)
 {
@@ -172,13 +173,10 @@ void algoritmo_backtraking(queue<paso> &solucion, tablero &t)
     // CASO BASE (no tiene hijos)
     if (casillas_movibles.empty())
     {
-        if(solucion.size() < 31)
-        {
-            //cout << "HAS PERDIDO" << endl;
-            solucion = cola_vacia;
-        }
-        else
+        if(solucion_encontrada(t, solucion))
             cout << "SOLUCION ENCONTRADA!!" << endl;
+        else
+            solucion = cola_vacia;
 
         return;
     }
@@ -211,6 +209,11 @@ void algoritmo_backtraking(queue<paso> &solucion, tablero &t)
         casillas_movibles.pop();
     }
     
+}
+
+bool solucion_encontrada(const tablero &t, const queue<paso> &solucion)
+{
+    return solucion.size() >= 31 and t[3][3] == 'B';
 }
 
 queue<paso> buscar_solucion (tablero &t)
