@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-enum movimiento {arriba, derecha, abajo, izquierda};
+enum movimiento {izquierda, arriba, derecha, abajo};
 typedef vector<vector<char>> tablero;
 typedef pair<size_t, size_t> posicion;
 struct paso
